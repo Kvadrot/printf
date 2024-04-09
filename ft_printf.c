@@ -6,7 +6,7 @@
 /*   By: itykhono <itykhono@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 12:21:02 by itykhono          #+#    #+#             */
-/*   Updated: 2024/04/09 15:24:58 by itykhono         ###   ########.fr       */
+/*   Updated: 2024/04/09 20:07:24 by itykhono         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,6 @@ int ft_detect_param(va_list args, char ch)
 		return (ft_put_chr((char)va_arg(args, int)));
 	else if (ch == 's')
 		return (ft_put_str((char *)va_arg(args, char *)));
-	else if (ch == 'p')
-		return (printf("niema p"));
 	else if (ch == 'd')
 		return (ft_putnbr(va_arg(args, int)));
 	else if (ch == 'i')
@@ -37,22 +35,25 @@ int ft_detect_param(va_list args, char ch)
 	else if (ch == 'u')
 		return (ft_unsigned_putnbr((int unsigned)va_arg(args, int unsigned)));
 	else if (ch == 'x')
-		return (printf("niema x"));
+		return (ft_print_16_base((int unsigned)va_arg(args, int unsigned), "0123456789abcdef"));
 	else if (ch == 'X')
-		return (printf("niema X"));
+		return (ft_print_16_base((int unsigned)va_arg(args, int unsigned), "0123456789ABCDEF"));
 	else if (ch == '%')
 		return (ft_put_chr('%'));
+	else if (ch == 'p')
+	{
+		// printf("%lx",(uintptr_t)va_arg(args, void *));
+		return (ft_print_ptr((uintptr_t)va_arg(args, void *), "0123456789abcdef"));
+	}
 		
 	return (0);
 }
 
-int	ft_is_param_letter(char ch)
+int	ft_is_param_letter(char ch, char *arr)
 {
 	int		ind;
-	char	arr[10] = {'c', 's', 'p', 'd', 'i', 'u', 'x', 'X', '%'};//"cspdiuxX%";
 
 	ind = 0;
-	
 	while (arr[ind] != '\0')
 	{
 		if (arr[ind] == ch)
@@ -68,7 +69,6 @@ int	ft_printf(const char *format, ...)
 	int long long sym_sum;
 	va_list	args;
 
-
 	i = 0;
 	sym_sum = 0;
 	va_start(args, format);
@@ -76,7 +76,7 @@ int	ft_printf(const char *format, ...)
 		return (0);
 	while (format[i] != '\0')
 	{
-		if (format[i] == '%' && ft_is_param_letter(format[i + 1]) == 200)
+		if (format[i] == '%' && ft_is_param_letter(format[i + 1], "cspdiuxX%") == 200)
 		{
 			i++;
 			sym_sum += ft_detect_param(args, format[i]);

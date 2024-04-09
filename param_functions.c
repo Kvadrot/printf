@@ -6,7 +6,7 @@
 /*   By: itykhono <itykhono@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 10:47:14 by itykhono          #+#    #+#             */
-/*   Updated: 2024/04/08 19:07:34 by itykhono         ###   ########.fr       */
+/*   Updated: 2024/04/09 20:15:18 by itykhono         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,3 +87,50 @@ unsigned int	ft_unsigned_putnbr(int unsigned n)
 	return (result);
 }
 
+
+unsigned int	ft_print_16_base(int unsigned n, char *base)
+{
+	int				i;
+	char			buffer[13];
+	unsigned int	result;
+
+	i = 0;
+	result = 0;
+	if (n == 0)
+		return (ft_put_chr('0'));
+	while (n > 0)
+	{
+		buffer[i] = base[n % 16];
+		n /= 16;
+		i++;
+	}
+	while (--i >= 0)
+		result += ft_put_chr(buffer[i]);
+	return (result);
+}
+
+int	ft_print_ptr(uintptr_t ptr, char *base)
+{
+	int		i;
+	char	buffer[20];
+	int		result;
+	uintptr_t converted_ptr;
+
+	i = 0;
+	result = 0;
+	converted_ptr = ptr;
+
+	if (ptr == 0)
+		return (ft_put_chr('0'));
+	while (converted_ptr > 0)
+	{
+		buffer[i] = base[converted_ptr % 16];
+		converted_ptr /= 16;
+		i++;
+	}
+	result += ft_put_chr('0');
+	result += ft_put_chr('x');
+	while (--i >= 0)
+		result += ft_put_chr(buffer[i]);
+	return (result);
+}

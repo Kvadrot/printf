@@ -3,36 +3,48 @@
 void ft_test_s()
 {
 	char *str = "01234%%";
+	printf("\n____________ft_test_s_________________\n");
 	int	origRes = printf("%%1\n");
 	int mineRes = ft_printf("%%1\n");
 	if ( origRes != mineRes)
 		printf("+++++====+++++=++++++\n ft_test_s ORIG = %d, MINE = %d +++++====+++++=++++++\n", origRes, mineRes);
 }
 
+void ft_test_x()
+{
+	int num = -12;
+	printf("\n____________ft_test_big_x_________________\n");
+	int	origRes = printf("orig = %x\n", num);
+	int mineRes = ft_printf("mine = %x\n", num);
+	if ( origRes != mineRes)
+		printf("+++++====+++++=++++++\n ft_test_x ORIG = %d, MINE = %d +++++====+++++=++++++\n", origRes, mineRes);
+}
+
+void ft_test_big_X()
+{
+	int num = -1123121312;
+	printf("\n____________ft_test_big_X_________________\n");
+	int	origRes = printf("orig = %X\n", num);
+	int mineRes = ft_printf("mine = %X\n", num);
+	if ( origRes != mineRes)
+		printf("+++++====+++++=++++++\n ft_test_big_X ORIG = %d, MINE = %d +++++====+++++=++++++\n", origRes, mineRes);
+}
+
+void ft_test_p()
+{
+	int num = 22;
+	int *ptr = &num;
+	printf("\n____________ft_test_p_________________\n");
+	int	origRes = printf("orig = %p\n", ptr);
+	int mineRes = ft_printf("mine = %p\n", ptr);
+	if ( origRes != mineRes)
+		printf("+++++====+++++=++++++ ft_test_p ORIG = %d, MINE = %d +++++====+++++=++++++\n", origRes, mineRes);
+}
+
 int main(int argc, char **argv)
 {
 	ft_test_s();
-	// int test = 5556;
-	// char *gamno = "zaqwsxcde%%%%";
-	// int unsigned unsi = -1;
-	
-	// int a = ft_printf("%d || %s", test, gamno);
-	// printf("\n");
-	// printf("a = %d\n", a);
-	// printf("g = %u\n", unsi);
-	// ft_printf("g = %u\n", unsi);
-
-	// int num = 214748464;
-	// printf("Decimal: %i\n", num);  // prints 123 in decimal format
-
-	// num = -0123;  // Octal represent ation of 83 (leading 0)
-	// printf("Octal: %i\n", num);    // prints 123 in octal format
-
-	// num = -0x122A23; // Hexadecimal representation of 291 (leading 0x)
-	// printf("Hexadecimal: %i\n", num);  // prints 291 in hexadecimal format
-	// num = 0x122A23; // Hexadecimal representation of 291 (leading 0x)
-	// ft_printf("Hexadecimal: %i\n", num);  // prints 291 in hexadecimal format
-
-	// int newHex = 255;
-	// printf("test x, %d = %x", newHex, newHex);
+	ft_test_x();
+	ft_test_big_X();
+	ft_test_p();
 }
