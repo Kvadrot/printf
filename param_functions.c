@@ -6,7 +6,7 @@
 /*   By: itykhono <itykhono@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 10:47:14 by itykhono          #+#    #+#             */
-/*   Updated: 2024/04/11 13:37:23 by itykhono         ###   ########.fr       */
+/*   Updated: 2024/04/11 14:10:29 by itykhono         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	ft_put_chr(char ch)
 	return (1);
 }
 
-int ft_put_str(char *str)
+int	ft_put_str(char *str)
 {
 	int	result;
 	int	ind;
@@ -26,7 +26,7 @@ int ft_put_str(char *str)
 	ind = 0;
 	result = 0;
 	if (str == NULL)
-		return ft_put_str("(null)");
+		return (ft_put_str("(null)"));
 	while (str[ind] != '\0')
 	{
 		ft_put_chr(str[ind]);
@@ -36,32 +36,28 @@ int ft_put_str(char *str)
 	return (result);
 }
 
-int ft_putnbr(int n)
+int	ft_putnbr(int n)
 {
 	int		i;
-	int		is_negative;
+	int		sign;
 	char	buffer[12];
 	int		result;
 
 	i = 0;
 	result = 0;
-	is_negative = 0;
+	sign = 1;
 	if (n == 0)
 		return (ft_put_chr('0'));
 	if (n == -2147483648)
 		return (ft_put_str("-2147483648"));
 	if (n < 0)
+		sign = -1;
+	while (n != 0)
 	{
-		is_negative = 1;
-		n *= -1;
-	}
-	while (n > 0)
-	{
-		buffer[i] = n % 10 + '0';
+		buffer[i++] = (n % 10 * sign) + '0';
 		n /= 10;
-		i++;
 	}
-	if (is_negative)
+	if (sign == -1)
 		buffer[i++] = '-';
 	while (--i >= 0)
 		result += ft_put_chr(buffer[i]);
@@ -89,7 +85,6 @@ unsigned int	ft_unsigned_putnbr(int unsigned n)
 	return (result);
 }
 
-
 unsigned int	ft_print_16_base(int unsigned n, char *base)
 {
 	int				i;
@@ -113,10 +108,10 @@ unsigned int	ft_print_16_base(int unsigned n, char *base)
 
 int	ft_print_ptr(void *ptr, char *base)
 {
-	int		i;
-	char	buffer[20];
-	int		result;
-	uintptr_t converted_ptr;
+	int			i;
+	char		buffer[20];
+	int			result;
+	uintptr_t	converted_ptr;
 
 	if (ptr == NULL)
 	{

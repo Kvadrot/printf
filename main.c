@@ -58,10 +58,26 @@ void ft_test_p()
 	printf("%p", ptr);	
 }
 
+void	ft_test_d()
+{
+	int num = -123;
+	fflush(stdout);
+	printf("\n____________ft_test_d_________________\n");
+	fflush(stdout);
+	int	origRes = printf("orig = %d\n", num);
+	int mineRes = ft_printf("mine = %d\n", num);
+	if ( origRes != mineRes)
+	{
+		fflush(stdout);
+		printf("ft_test_p ORIG = %d, MINE = %d +++++====+++++=++++++\n", origRes, mineRes);
+	}
+}
+
 int main(int argc, char **argv)
 {
-	ft_test_s();
+	// ft_test_s();
 // 	ft_test_x();
 // 	ft_test_big_X();
 	ft_test_p();
+	ft_test_d();
 }
