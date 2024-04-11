@@ -4,6 +4,9 @@ CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 # Source files
 SRCS = ft_printf.c\
+		param_functions.c\
+
+
 
 # Object files
 OBJS = $(SRCS:.c=.o)
@@ -16,7 +19,7 @@ all: $(NAME)
 
 # Compile object files
 %.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) -c -I./ $< -o $@
 
 # Build the library
 $(NAME): $(OBJS)

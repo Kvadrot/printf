@@ -6,7 +6,7 @@
 /*   By: itykhono <itykhono@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 12:21:02 by itykhono          #+#    #+#             */
-/*   Updated: 2024/04/09 20:07:24 by itykhono         ###   ########.fr       */
+/*   Updated: 2024/04/11 13:02:18 by itykhono         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,10 @@ int ft_detect_param(va_list args, char ch)
 		return (ft_put_chr('%'));
 	else if (ch == 'p')
 	{
-		// printf("%lx",(uintptr_t)va_arg(args, void *));
-		return (ft_print_ptr((uintptr_t)va_arg(args, void *), "0123456789abcdef"));
+			return (ft_print_ptr(va_arg(args, void *), "0123456789abcdef"));
 	}
-		
-	return (0);
+	else
+		return (0);
 }
 
 int	ft_is_param_letter(char ch, char *arr)

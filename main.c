@@ -2,12 +2,23 @@
 
 void ft_test_s()
 {
-	char *str = "01234%%";
+	char *elemnt = NULL; 
+	char *testStr[] = {"01234", "qopqwe 1", "", NULL};
+	int minElemCounter = 0; 
+	fflush(stdout);
 	printf("\n____________ft_test_s_________________\n");
-	int	origRes = printf("%%1\n");
-	int mineRes = ft_printf("%%1\n");
-	if ( origRes != mineRes)
-		printf("+++++====+++++=++++++\n ft_test_s ORIG = %d, MINE = %d +++++====+++++=++++++\n", origRes, mineRes);
+	for (int i = 0; i < 4; i++)
+	{
+		fflush(stdout);
+		int	origRes = printf("ORIG _= %s\n", testStr[i]);
+		int mineRes = ft_printf("MINE _= %s\n", testStr[i]);
+		
+		if ( origRes != mineRes)
+		{
+			fflush(stdout);
+			printf("ft_test_s ORIG = %d, MINE = %d \n+++++====+++++=++++++\n", origRes, mineRes);		
+		}
+	}
 }
 
 void ft_test_x()
@@ -33,18 +44,24 @@ void ft_test_big_X()
 void ft_test_p()
 {
 	int num = 22;
-	int *ptr = &num;
+	int *ptr = NULL;
+	fflush(stdout);
 	printf("\n____________ft_test_p_________________\n");
 	int	origRes = printf("orig = %p\n", ptr);
 	int mineRes = ft_printf("mine = %p\n", ptr);
 	if ( origRes != mineRes)
-		printf("+++++====+++++=++++++ ft_test_p ORIG = %d, MINE = %d +++++====+++++=++++++\n", origRes, mineRes);
+	{
+		fflush(stdout);
+		printf("ft_test_p ORIG = %d, MINE = %d +++++====+++++=++++++\n", origRes, mineRes);
+	}
+	fflush(stdout);
+	printf("%p", ptr);	
 }
 
 int main(int argc, char **argv)
 {
 	ft_test_s();
-	ft_test_x();
-	ft_test_big_X();
+// 	ft_test_x();
+// 	ft_test_big_X();
 	ft_test_p();
 }

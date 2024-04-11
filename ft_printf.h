@@ -6,7 +6,7 @@
 /*   By: itykhono <itykhono@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 12:20:55 by itykhono          #+#    #+#             */
-/*   Updated: 2024/04/09 20:03:58 by itykhono         ###   ########.fr       */
+/*   Updated: 2024/04/11 13:06:03 by itykhono         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,13 @@
 
 int				ft_printf(const char *, ...);
 int				ft_putnbr(int n);
+int				ft_put_chr(char c);
+int				ft_put_str(char *str);
+unsigned int	ft_unsigned_putnbr(int unsigned n);
 int				ft_is_param_letter(char ch, char *arr);
 int				ft_detect_param(va_list args, char ch);
-unsigned int	ft_unsigned_putnbr(int unsigned n);
+int				ft_print_ptr(void *ptr, char *base);
 unsigned int	ft_print_16_base(int unsigned n, char *base);
-int				ft_print_ptr(uintptr_t ptr, char *base);
+
 
 #endif

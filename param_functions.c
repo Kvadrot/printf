@@ -6,7 +6,7 @@
 /*   By: itykhono <itykhono@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 10:47:14 by itykhono          #+#    #+#             */
-/*   Updated: 2024/04/09 20:15:18 by itykhono         ###   ########.fr       */
+/*   Updated: 2024/04/11 13:37:23 by itykhono         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ int ft_put_str(char *str)
 
 	ind = 0;
 	result = 0;
+	if (str == NULL)
+		return ft_put_str("(null)");
 	while (str[ind] != '\0')
 	{
 		ft_put_chr(str[ind]);
@@ -109,19 +111,21 @@ unsigned int	ft_print_16_base(int unsigned n, char *base)
 	return (result);
 }
 
-int	ft_print_ptr(uintptr_t ptr, char *base)
+int	ft_print_ptr(void *ptr, char *base)
 {
 	int		i;
 	char	buffer[20];
 	int		result;
 	uintptr_t converted_ptr;
 
+	if (ptr == NULL)
+	{
+		result = ft_put_str("(nil)");
+		return (result);
+	}
 	i = 0;
 	result = 0;
-	converted_ptr = ptr;
-
-	if (ptr == 0)
-		return (ft_put_chr('0'));
+	converted_ptr = (uintptr_t)ptr;
 	while (converted_ptr > 0)
 	{
 		buffer[i] = base[converted_ptr % 16];
