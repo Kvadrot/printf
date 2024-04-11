@@ -6,10 +6,9 @@
 /*   By: itykhono <itykhono@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 12:20:55 by itykhono          #+#    #+#             */
-/*   Updated: 2024/04/11 13:06:03 by itykhono         ###   ########.fr       */
+/*   Updated: 2024/04/11 16:07:21 by itykhono         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
@@ -19,15 +18,14 @@
 # include <unistd.h>
 # include <stdint.h>
 
-int				ft_printf(const char *, ...);
-int				ft_putnbr(int n);
-int				ft_put_chr(char c);
-int				ft_put_str(char *str);
-unsigned int	ft_unsigned_putnbr(int unsigned n);
-int				ft_is_param_letter(char ch, char *arr);
-int				ft_detect_param(va_list args, char ch);
-int				ft_print_ptr(void *ptr, char *base);
-unsigned int	ft_print_16_base(int unsigned n, char *base);
-
+int	ft_printf(const char *format, ...);
+int	ft_putnbr(int n);
+int	ft_put_chr(char c);
+int	ft_put_str(char *str);
+int	ft_unsigned_putnbr(int unsigned n);
+int	ft_is_param_letter(char ch);
+int	ft_detect_param(va_list args, char ch);
+int	ft_print_ptr(void *ptr, char *base);
+int	ft_print_16_base(int unsigned n, int capitalized);
 
 #endif

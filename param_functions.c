@@ -6,17 +6,11 @@
 /*   By: itykhono <itykhono@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 10:47:14 by itykhono          #+#    #+#             */
-/*   Updated: 2024/04/11 14:10:29 by itykhono         ###   ########.fr       */
+/*   Updated: 2024/04/11 14:29:34 by itykhono         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-int	ft_put_chr(char ch)
-{
-	write(1, &ch, 1);
-	return (1);
-}
 
 int	ft_put_str(char *str)
 {
@@ -64,7 +58,7 @@ int	ft_putnbr(int n)
 	return (result);
 }
 
-unsigned int	ft_unsigned_putnbr(int unsigned n)
+int	ft_unsigned_putnbr(int unsigned n)
 {
 	int		i;
 	char	buffer[13];
@@ -85,14 +79,19 @@ unsigned int	ft_unsigned_putnbr(int unsigned n)
 	return (result);
 }
 
-unsigned int	ft_print_16_base(int unsigned n, char *base)
+int	ft_print_16_base(int unsigned n, int capitalized)
 {
-	int				i;
-	char			buffer[13];
-	unsigned int	result;
+	int		i;
+	char	buffer[13];
+	int		result;
+	char	*base;
 
 	i = 0;
 	result = 0;
+	if (capitalized == 1)
+		base = "0123456789ABCDEF";
+	else
+		base = "0123456789abcdef";
 	if (n == 0)
 		return (ft_put_chr('0'));
 	while (n > 0)
